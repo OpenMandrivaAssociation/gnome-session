@@ -125,7 +125,7 @@ fi
 %{_libexecdir}/gnome-session-binary
 %{_libexecdir}/gnome-session-failed
 %{_libexecdir}/gnome-session-check-accelerated
-%{_libexecdir}/gnome-session-check-accelerated-helper
+#{_libexecdir}/gnome-session-check-accelerated-helper
 %{_datadir}/wayland-sessions
 %{_datadir}/GConf/gsettings/gnome-session.convert
 %{_mandir}/man1/gnome-session-quit.*
