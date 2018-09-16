@@ -26,9 +26,7 @@ BuildRequires:	pkgconfig(gnome-desktop-3.0)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 2.90.7
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
-BuildRequires:	pkgconfig(libsystemd-journal)
-BuildRequires:	pkgconfig(libsystemd-login) >= 38
-BuildRequires:	pkgconfig(libsystemd-daemon)
+BuildRequires:	pkgconfig(systemd)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(upower-glib) >= 0.9.0
@@ -38,10 +36,17 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:	pkgconfig(xtrans)
 BuildRequires:	pkgconfig(xtst)
+BuildRequires:	xmlto
+BuildRequires:	meson
+BuildRequires:  pkgconfig(glesv2)
+#BuildRequires:  glesv3-devel
+
 Requires:	desktop-common-data
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
+
+Suggests:   x11-server-xwayland
 
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly
@@ -66,14 +71,13 @@ gnome-session internally.
 %apply_patches
 
 %build
-%configure2_5x \
-	--enable-systemd \
-	--disable-schemas-install
-
-%make
+%meson                     \
+    -Dsystemd=true         \
+    -Dsystemd_journal=true
+%meson_build
 
 %install
-%makeinstall_std
+%meson_install
 
 # wmsession session file
 mkdir -p %{buildroot}%{_sysconfdir}/X11/wmsession.d
@@ -111,23 +115,27 @@ fi
 %{_bindir}/gnome-session
 %{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
 %{_datadir}/%{name}
-%{_iconsdir}/hicolor/*/apps/*
+#{_iconsdir}/hicolor/*/apps/*
 %{_mandir}/man1/gnome-session.*
 
 %files -f %{name}-3.0.lang
 %doc AUTHORS COPYING ChangeLog NEWS README
+%doc %{_docdir}/%{name}
 %config(noreplace) %{_sysconfdir}/X11/wmsession.d/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/startgnome
 %{_bindir}/startgnomeclassic
+%{_bindir}/%{name}-custom-session
 %{_bindir}/gnome-session-quit
 %{_bindir}/gnome-session-inhibit
 %{_libexecdir}/gnome-session-binary
 %{_libexecdir}/gnome-session-failed
-%{_libexecdir}/gnome-session-check-accelerated
+%{_libexecdir}/gnome-session-check-accelerated*
 #{_libexecdir}/gnome-session-check-accelerated-helper
 %{_datadir}/wayland-sessions
 %{_datadir}/GConf/gsettings/gnome-session.convert
 %{_mandir}/man1/gnome-session-quit.*
 %{_mandir}/man1/gnome-session-inhibit.*
 
+%exclude /usr/lib/debug/usr/libexec/gnome-session-check-accelerated-gl-helper-3.28.1-1.x86_64.debug
+%exclude /usr/lib/debug/usr/libexec/gnome-session-check-accelerated-gles-helper-3.28.1-1.x86_64.debug
