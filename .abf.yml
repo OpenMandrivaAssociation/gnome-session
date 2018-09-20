@@ -5,3 +5,4 @@ removed_sources:
   gnome-session-3.18.1.2.tar.xz: b5f551583468dfad9adf25c605251e4e17ed1834
 sources:
   gnome-session-3.28.1.tar.xz: 3233201cc82fa736997ddee7e54cb7f61c9d0074
+  gnome-session-3.30.0.tar.xz: 22d29eeba770c925aa78d1e9651dab597271c59f
