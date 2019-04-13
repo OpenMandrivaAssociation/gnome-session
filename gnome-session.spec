@@ -3,8 +3,8 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	3.30.1
-Release:	2
+Version:	3.32.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -45,8 +45,10 @@ Requires:	desktop-common-data
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
+Requires:	gsettings-desktop-schemas
+Requires:	dconf
 
-Suggests:   x11-server-xwayland
+Recommends:   x11-server-xwayland
 
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly
@@ -68,7 +70,7 @@ gnome-session internally.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 %meson                     \
@@ -79,63 +81,47 @@ gnome-session internally.
 %install
 %meson_install
 
-# wmsession session file
-mkdir -p %{buildroot}%{_sysconfdir}/X11/wmsession.d
-cat << EOF > %{buildroot}%{_sysconfdir}/X11/wmsession.d/02GNOME
-NAME=GNOME
-ICON=gnome-logo-icon-transparent.png
-DESC=GNOME Environment
-EXEC=%{_bindir}/startgnome
-SCRIPT:
-exec %{_bindir}/startgnome
-EOF
 
 install -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/startgnome
-install -m 0755 %{SOURCE3} %{buildroot}%{_bindir}/startgnomeclassic
 
 mkdir -p %{buildroot}%{_sysconfdir}/gnome
 install -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/gnome/gnomerc
 # gw these produce rpmlint errors:
-rm -rf %{buildroot}%{_datadir}/locale/{be@latin}
-%find_lang %{name}-3.0
+rm -rf %buildroot%_datadir/locale/{be@latin}
 
-# remove unpackaged files
-rm -rf %{buildroot}%{_datadir}/xsessions
+%find_lang %{po_package}
+
 
 %post
 if [ "$1" = "2" -a -r /etc/sysconfig/desktop ]; then
   sed -i -e "s|^DESKTOP=Gnome$|DESKTOP=GNOME|g" /etc/sysconfig/desktop
 fi
-%{make_session}
 
-#%postun
-#%{make_session}
+%posttrans
+if [ "$1" -eq 1 ]; then
+        if [ -e %{_datadir}/xsessions/02GNOME.desktop ]; then
+                rm -rf %{_datadir}/xsessions/02GNOME.desktop
+        fi
+        if [ -e %{_sysconfdir}/X11/dm/Sessions/02GNOME.desktop ]; then
+                rm -rf  %{_sysconfdir}/X11/dm/Sessions/02GNOME.desktop
+        fi
+fi
 
 %files bin
-%{_bindir}/gnome-session
 %{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
+%{_bindir}/%{name}
+%{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
-#{_iconsdir}/hicolor/*/apps/*
-%{_mandir}/man1/gnome-session.*
 
 %files -f %{name}-3.0.lang
-%doc AUTHORS COPYING ChangeLog NEWS README
-%doc %{_docdir}/%{name}
-%config(noreplace) %{_sysconfdir}/X11/wmsession.d/*
+%{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
+%{_bindir}/%{name}-inhibit
 %{_bindir}/startgnome
-%{_bindir}/startgnomeclassic
+%{_bindir}/%{name}-quit
 %{_bindir}/%{name}-custom-session
-%{_bindir}/gnome-session-quit
-%{_bindir}/gnome-session-inhibit
-%{_libexecdir}/gnome-session-binary
-%{_libexecdir}/gnome-session-failed
-%{_libexecdir}/gnome-session-check-accelerated*
-#{_libexecdir}/gnome-session-check-accelerated-helper
+%{_libexecdir}/%{name}-*
+%{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/wayland-sessions
-%{_datadir}/GConf/gsettings/gnome-session.convert
-%{_mandir}/man1/gnome-session-quit.*
-%{_mandir}/man1/gnome-session-inhibit.*
-
-%exclude /usr/lib/debug/usr/libexec/gnome-session-check-accelerated-gl-helper-3.28.1-1.x86_64.debug
-%exclude /usr/lib/debug/usr/libexec/gnome-session-check-accelerated-gles-helper-3.28.1-1.x86_64.debug
+%{_mandir}/*/%{name}-*
+%doc %{_docdir}/%{name}
