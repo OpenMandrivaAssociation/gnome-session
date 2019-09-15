@@ -127,3 +127,23 @@ fi
 %{_datadir}/wayland-sessions
 %{_mandir}/*/%{name}-*
 %doc %{_docdir}/%{name}
+
+%{_userunitdir}/gnome-session-failed.service
+%{_userunitdir}/gnome-session-failed.target
+%{_userunitdir}/gnome-session-initialized.target
+%{_userunitdir}/gnome-session-manager.target
+%{_userunitdir}/gnome-session-manager@.service
+%{_userunitdir}/gnome-session-monitor.service
+%{_userunitdir}/gnome-session-pre.target
+%{_userunitdir}/gnome-session-restart-dbus.service
+%{_userunitdir}/gnome-session-shutdown.target
+%{_userunitdir}/gnome-session-signal-init.service
+%{_userunitdir}/gnome-session-stable.target
+%{_userunitdir}/gnome-session-stable.timer
+%{_userunitdir}/gnome-session-wayland.target
+%{_userunitdir}/gnome-session-wayland@.target
+%{_userunitdir}/gnome-session-x11-services.target
+%{_userunitdir}/gnome-session-x11.target
+%{_userunitdir}/gnome-session-x11@.target
+%{_userunitdir}/gnome-session.target
+%{_userunitdir}/gnome-session@.target
