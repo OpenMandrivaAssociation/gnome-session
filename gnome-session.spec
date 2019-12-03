@@ -5,7 +5,7 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	3.34.1
+Version:	3.34.2
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -138,8 +138,6 @@ fi
 %{_userunitdir}/gnome-session-restart-dbus.service
 %{_userunitdir}/gnome-session-shutdown.target
 %{_userunitdir}/gnome-session-signal-init.service
-%{_userunitdir}/gnome-session-stable.target
-%{_userunitdir}/gnome-session-stable.timer
 %{_userunitdir}/gnome-session-wayland.target
 %{_userunitdir}/gnome-session-wayland@.target
 %{_userunitdir}/gnome-session-x11-services.target
