@@ -6,7 +6,7 @@
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
 Version:	3.36.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -14,7 +14,10 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gnome-session/%{url_ver}/%{name}-
 Source1:	gnome-session-startgnome
 Source2:	gnome-session-gnomerc
 Source3:	gnome-session-startgnomeclassic
+# https://bugzilla.gnome.org/show_bug.cgi?id=772421
+Patch4: 0001-check-accelerated-gles-Use-eglGetPlatformDisplay-EXT.patch
 
+BuildRequires:  gettext
 BuildRequires:	desktop-file-utils
 BuildRequires:	gtk-doc
 BuildRequires:	intltool >= 0.40.0
@@ -23,12 +26,13 @@ BuildRequires:	tcp_wrappers-devel
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.76
 BuildRequires:	pkgconfig(gio-2.0) >= 2.28.0
 BuildRequires:	pkgconfig(gl)
+BuildRequires:  pkgconfig(egl)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.28.0
 BuildRequires:	pkgconfig(gnome-desktop-3.0)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 2.90.7
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
-BuildRequires:	pkgconfig(systemd)
+BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(upower-glib) >= 0.9.0
@@ -38,6 +42,7 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:	pkgconfig(xtrans)
 BuildRequires:	pkgconfig(xtst)
+BuildRequires:  pkgconfig(x11)
 BuildRequires:	xmlto
 BuildRequires:	meson
 BuildRequires:  pkgconfig(glesv2)
