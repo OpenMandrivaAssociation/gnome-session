@@ -5,8 +5,8 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	3.36.0
-Release:	2
+Version:	3.38.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -150,3 +150,6 @@ fi
 %{_userunitdir}/gnome-session-x11@.target
 %{_userunitdir}/gnome-session.target
 %{_userunitdir}/gnome-session@.target
+%{_userunitdir}/gnome-launched-.scope.d/override.conf
+%{_userunitdir}/gnome-session-x11-services-ready.target
+%{_userunitdir}/gnome-session@gnome.target.d/gnome.session.conf
