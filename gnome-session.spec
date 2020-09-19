@@ -150,3 +150,6 @@ fi
 %{_userunitdir}/gnome-session-x11@.target
 %{_userunitdir}/gnome-session.target
 %{_userunitdir}/gnome-session@.target
+%{_userunitdir}/gnome-launched-.scope.d/override.conf
+%{_userunitdir}/gnome-session-x11-services-ready.target
+%{_userunitdir}/gnome-session@gnome.target.d/gnome.session.conf
