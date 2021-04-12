@@ -5,12 +5,12 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	40
-Release:	0.beta
+Version:	40.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://www.gnome.org/softwaremap/projects/gnome-session/
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gnome-session/%{url_ver}/%{name}-%{version}.beta.tar.xz
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gnome-session/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	gnome-session-startgnome
 Source2:	gnome-session-gnomerc
 Source3:	gnome-session-startgnomeclassic
@@ -75,7 +75,7 @@ no startup scripts. It is meant for applications such as GDM that use
 gnome-session internally.
 
 %prep
-%setup -q -n %{name}-%{version}.beta
+%setup -q -n %{name}-%{version}
 %autopatch -p1
 
 %build
