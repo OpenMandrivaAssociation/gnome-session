@@ -1,11 +1,11 @@
-%define po_package gnome-session-41
+%define po_package gnome-session-42
 
 %define _disable_rebuild_configure 1
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	41.3
+Version:	42.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
