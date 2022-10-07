@@ -125,7 +125,7 @@ fi
 %{_bindir}/%{name}-inhibit
 %{_bindir}/startgnome
 %{_bindir}/%{name}-quit
-%{_bindir}/%{name}-custom-session
+#{_bindir}/%{name}-custom-session
 %{_libexecdir}/%{name}-*
 %{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/wayland-sessions
