@@ -1,11 +1,11 @@
-%define po_package gnome-session-42
+%define po_package gnome-session-43
 
 %define _disable_rebuild_configure 1
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	42.0
+Version:	43.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -119,13 +119,13 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-42.lang
+%files -f %{name}-43.lang
 %{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
 %{_bindir}/startgnome
 %{_bindir}/%{name}-quit
-%{_bindir}/%{name}-custom-session
+#{_bindir}/%{name}-custom-session
 %{_libexecdir}/%{name}-*
 %{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/wayland-sessions
