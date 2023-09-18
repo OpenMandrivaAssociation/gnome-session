@@ -129,6 +129,7 @@ fi
 %{_libexecdir}/%{name}-*
 %{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/wayland-sessions
+%{_datadir}/xdg-desktop-portal/gnome-portals.conf
 %{_mandir}/*/%{name}-*
 %doc %{_docdir}/%{name}
 
