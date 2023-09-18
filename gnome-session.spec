@@ -1,16 +1,16 @@
-%define po_package gnome-session-44
+%define po_package gnome-session-45
 
 %define _disable_rebuild_configure 1
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	44.0
-Release:	2
+Version:	45.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
-Url:		http://www.gnome.org/softwaremap/projects/gnome-session/
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gnome-session/%{url_ver}/%{name}-%{version}.tar.xz
+Url:		https://www.gnome.org/softwaremap/projects/gnome-session/
+Source0:	https://ftp.gnome.org/pub/GNOME/sources/gnome-session/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	gnome-session-startgnome
 Source2:	gnome-session-gnomerc
 Source3:	gnome-session-startgnomeclassic
@@ -119,7 +119,7 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-44.lang
+%files -f %{name}-45.lang
 %{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
