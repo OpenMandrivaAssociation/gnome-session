@@ -1,4 +1,4 @@
-%define po_package gnome-session-45
+%define po_package gnome-session-46
 
 %define _disable_rebuild_configure 1
 %define url_ver %(echo %{version}|cut -d. -f1,2)
@@ -79,9 +79,7 @@ gnome-session internally.
 %autopatch -p1
 
 %build
-%meson                     \
-    -Dsystemd=true         \
-    -Dsystemd_journal=true
+%meson
 %meson_build
 
 %install
@@ -119,7 +117,7 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-45.lang
+%files -f %{name}-46.lang
 %{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
@@ -127,7 +125,7 @@ fi
 %{_bindir}/%{name}-quit
 #{_bindir}/%{name}-custom-session
 %{_libexecdir}/%{name}-*
-%{_datadir}/GConf/gsettings/%{name}.convert
+#{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/wayland-sessions
 %{_datadir}/xdg-desktop-portal/gnome-portals.conf
 %{_mandir}/*/%{name}-*
