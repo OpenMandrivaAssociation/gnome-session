@@ -117,7 +117,7 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-46.lang
+%files -f %{name}-47.lang
 %{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
