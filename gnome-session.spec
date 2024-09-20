@@ -119,9 +119,9 @@ fi
 
 %files -f %{name}-47.lang
 %{_datadir}/xsessions/*
-%{_sysconfdir}/gnome/gnomerc
+#{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
-%{_bindir}/startgnome
+#{_bindir}/startgnome
 %{_bindir}/%{name}-quit
 #{_bindir}/%{name}-custom-session
 %{_libexecdir}/%{name}-*
