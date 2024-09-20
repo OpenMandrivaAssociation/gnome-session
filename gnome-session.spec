@@ -86,10 +86,10 @@ gnome-session internally.
 %meson_install
 
 
-install -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/startgnome
+#install -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/startgnome
 
-mkdir -p %{buildroot}%{_sysconfdir}/gnome
-install -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/gnome/gnomerc
+#mkdir -p %{buildroot}%{_sysconfdir}/gnome
+#install -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/gnome/gnomerc
 # gw these produce rpmlint errors:
 rm -rf %buildroot%_datadir/locale/{be@latin}
 
