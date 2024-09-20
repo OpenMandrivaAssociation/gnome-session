@@ -6,14 +6,14 @@
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
 Version:	47.0.1
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		https://www.gnome.org/softwaremap/projects/gnome-session/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/gnome-session/%{url_ver}/%{name}-%{version}.tar.xz
-Source1:	gnome-session-startgnome
-Source2:	gnome-session-gnomerc
-Source3:	gnome-session-startgnomeclassic
+#Source1:	gnome-session-startgnome
+#Source2:	gnome-session-gnomerc
+#Source3:	gnome-session-startgnomeclassic
 # https://bugzilla.gnome.org/show_bug.cgi?id=772421
 Patch4: 0001-check-accelerated-gles-Use-eglGetPlatformDisplay-EXT.patch
 
