@@ -1,4 +1,4 @@
-%define po_package gnome-session-47
+%define po_package gnome-session-48
 
 %define _disable_rebuild_configure 1
 %define url_ver %(echo %{version}|cut -d. -f1,2)
@@ -117,7 +117,7 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-47.lang
+%files -f %{name}-48.lang
 %{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
