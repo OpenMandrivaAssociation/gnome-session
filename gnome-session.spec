@@ -5,8 +5,8 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	47.0.1
-Release:	2
+Version:	48.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		https://www.gnome.org/softwaremap/projects/gnome-session/
@@ -54,7 +54,7 @@ Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
 Requires:	gsettings-desktop-schemas
 Requires:	dconf
-Requires:   x11-server-xwayland
+Requires: x11-server-xwayland
 
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly
