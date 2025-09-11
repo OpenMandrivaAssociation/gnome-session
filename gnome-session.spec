@@ -133,7 +133,6 @@ fi
 %{_userunitdir}/app-gnome-.scope.d/override.conf
 %{_userunitdir}/gnome-session-basic-services.target
 %{_userunitdir}/app-flatpak-.scope.d/override.conf
-%{_userunitdir}/app-gnome-.scope.d/override.conf
 %{_userunitdir}/gnome-session-initialized.target
 %{_userunitdir}/gnome-session-manager.target
 %{_userunitdir}/gnome-session-manager@.service
