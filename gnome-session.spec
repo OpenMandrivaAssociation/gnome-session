@@ -5,7 +5,7 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	48.0
+Version:	49.rc
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -15,7 +15,7 @@ Source1:	gnome-session-startgnome
 Source2:	gnome-session-gnomerc
 Source3:	gnome-session-startgnomeclassic
 # https://bugzilla.gnome.org/show_bug.cgi?id=772421
-Patch4: 0001-check-accelerated-gles-Use-eglGetPlatformDisplay-EXT.patch
+#Patch4: 0001-check-accelerated-gles-Use-eglGetPlatformDisplay-EXT.patch
 
 BuildRequires:  gettext
 BuildRequires:	desktop-file-utils
@@ -28,8 +28,8 @@ BuildRequires:	pkgconfig(gio-2.0) >= 2.28.0
 BuildRequires:	pkgconfig(gl)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.28.0
-BuildRequires:	pkgconfig(gnome-desktop-3.0)
-BuildRequires:	pkgconfig(gtk+-3.0) >= 2.90.7
+BuildRequires:	pkgconfig(gnome-desktop-4)
+BuildRequires:	pkgconfig(gtk4)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
 BuildRequires:  pkgconfig(libsystemd)
@@ -49,7 +49,7 @@ BuildRequires:  pkgconfig(glesv2)
 #BuildRequires:  glesv3-devel
 
 Requires:	desktop-common-data
-Requires:	gnome-user-docs
+#Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
 Requires:	gsettings-desktop-schemas
@@ -75,11 +75,10 @@ no startup scripts. It is meant for applications such as GDM that use
 gnome-session internally.
 
 %prep
-%setup -q -n %{name}-%{version}
-%autopatch -p1
+%autosetup -n %{name}-%{version} -p1
 
 %build
-%meson
+%meson -Dx11=true
 %meson_build
 
 %install
