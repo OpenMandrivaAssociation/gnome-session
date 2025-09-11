@@ -129,7 +129,11 @@ fi
 %{_datadir}/xdg-desktop-portal/gnome-portals.conf
 %{_mandir}/*/%{name}-*
 %doc %{_docdir}/%{name}
-
+%{_datadir}/applications/gnome-mimeapps.list
+%{_userunitdir}/app-gnome-.scope.d/override.conf
+%{_userunitdir}/gnome-session-basic-services.target
+%{_userunitdir}/app-flatpak-.scope.d/override.conf
+%{_userunitdir}/app-gnome-.scope.d/override.conf
 %{_userunitdir}/gnome-session-initialized.target
 %{_userunitdir}/gnome-session-manager.target
 %{_userunitdir}/gnome-session-manager@.service
