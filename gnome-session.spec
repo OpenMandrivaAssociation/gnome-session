@@ -1,11 +1,11 @@
-%define po_package gnome-session-48
+%define po_package gnome-session-49
 
 %define _disable_rebuild_configure 1
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	48.0
+Version:	49.rc
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -15,7 +15,7 @@ Source1:	gnome-session-startgnome
 Source2:	gnome-session-gnomerc
 Source3:	gnome-session-startgnomeclassic
 # https://bugzilla.gnome.org/show_bug.cgi?id=772421
-Patch4: 0001-check-accelerated-gles-Use-eglGetPlatformDisplay-EXT.patch
+#Patch4: 0001-check-accelerated-gles-Use-eglGetPlatformDisplay-EXT.patch
 
 BuildRequires:  gettext
 BuildRequires:	desktop-file-utils
@@ -28,8 +28,8 @@ BuildRequires:	pkgconfig(gio-2.0) >= 2.28.0
 BuildRequires:	pkgconfig(gl)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.28.0
-BuildRequires:	pkgconfig(gnome-desktop-3.0)
-BuildRequires:	pkgconfig(gtk+-3.0) >= 2.90.7
+BuildRequires:	pkgconfig(gnome-desktop-4)
+BuildRequires:	pkgconfig(gtk4)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
 BuildRequires:  pkgconfig(libsystemd)
@@ -49,7 +49,7 @@ BuildRequires:  pkgconfig(glesv2)
 #BuildRequires:  glesv3-devel
 
 Requires:	desktop-common-data
-Requires:	gnome-user-docs
+#Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
 Requires:	gsettings-desktop-schemas
@@ -75,11 +75,10 @@ no startup scripts. It is meant for applications such as GDM that use
 gnome-session internally.
 
 %prep
-%setup -q -n %{name}-%{version}
-%autopatch -p1
+%autosetup -n %{name}-%{version} -p1
 
 %build
-%meson
+%meson -Dx11=true
 %meson_build
 
 %install
@@ -117,7 +116,7 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-48.lang
+%files -f %{name}-49.lang
 %{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
@@ -130,9 +129,10 @@ fi
 %{_datadir}/xdg-desktop-portal/gnome-portals.conf
 %{_mandir}/*/%{name}-*
 %doc %{_docdir}/%{name}
-
-%{_userunitdir}/gnome-session-failed.service
-%{_userunitdir}/gnome-session-failed.target
+%{_datadir}/applications/gnome-mimeapps.list
+%{_userunitdir}/app-gnome-.scope.d/override.conf
+%{_userunitdir}/gnome-session-basic-services.target
+%{_userunitdir}/app-flatpak-.scope.d/override.conf
 %{_userunitdir}/gnome-session-initialized.target
 %{_userunitdir}/gnome-session-manager.target
 %{_userunitdir}/gnome-session-manager@.service
@@ -148,6 +148,5 @@ fi
 %{_userunitdir}/gnome-session-x11@.target
 %{_userunitdir}/gnome-session.target
 %{_userunitdir}/gnome-session@.target
-%{_userunitdir}/gnome-launched-.scope.d/override.conf
 %{_userunitdir}/gnome-session-x11-services-ready.target
 %{_userunitdir}/gnome-session@gnome.target.d/gnome.session.conf
