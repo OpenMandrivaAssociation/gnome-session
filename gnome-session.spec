@@ -104,7 +104,6 @@ fi
 %{_datadir}/%{name}
 
 %files -f %{name}.lang
-%{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
 %{_bindir}/startgnome
@@ -128,11 +127,7 @@ fi
 %{_userunitdir}/gnome-session-restart-dbus.service
 %{_userunitdir}/gnome-session-shutdown.target
 %{_userunitdir}/gnome-session-signal-init.service
-%{_userunitdir}/gnome-session-wayland.target
-%{_userunitdir}/gnome-session-wayland@.target
 %{_userunitdir}/gnome-session-x11-services.target
-%{_userunitdir}/gnome-session-x11.target
-%{_userunitdir}/gnome-session-x11@.target
 %{_userunitdir}/gnome-session.target
 %{_userunitdir}/gnome-session@.target
 %{_userunitdir}/gnome-session-x11-services-ready.target
