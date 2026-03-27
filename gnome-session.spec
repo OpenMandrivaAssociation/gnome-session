@@ -132,3 +132,4 @@ fi
 %{_userunitdir}/gnome-session@.target
 %{_userunitdir}/gnome-session-x11-services-ready.target
 %{_userunitdir}/gnome-session@gnome.target.d/gnome.session.conf
+%{_userunitdir}/gnome-session-services.target
