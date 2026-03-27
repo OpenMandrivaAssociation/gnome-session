@@ -1,11 +1,11 @@
-%define po_package gnome-session-49
+%define po_package gnome-session-50
 
 %define _disable_rebuild_configure 1
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	49.2
+Version:	50.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -25,28 +25,15 @@ BuildRequires:	xmlto
 BuildRequires:	tcp_wrappers-devel
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.76
 BuildRequires:	pkgconfig(gio-2.0) >= 2.28.0
-BuildRequires:	pkgconfig(gl)
-BuildRequires:  pkgconfig(egl)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.28.0
 BuildRequires:	pkgconfig(gnome-desktop-4)
-BuildRequires:	pkgconfig(gtk4)
-BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
 BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(upower-glib) >= 0.9.0
-BuildRequires:	pkgconfig(xau)
-BuildRequires:	pkgconfig(xcomposite)
-BuildRequires:	pkgconfig(xext)
-BuildRequires:	pkgconfig(xrender)
-BuildRequires:	pkgconfig(xtrans)
-BuildRequires:	pkgconfig(xtst)
-BuildRequires:  pkgconfig(x11)
 BuildRequires:	xmlto
 BuildRequires:	meson
-BuildRequires:  pkgconfig(glesv2)
-#BuildRequires:  glesv3-devel
 
 Requires:	desktop-common-data
 #Requires:	gnome-user-docs
@@ -78,7 +65,7 @@ gnome-session internally.
 %autosetup -n %{name}-%{version} -p1
 
 %build
-%meson -Dx11=true
+%meson
 %meson_build
 
 %install
@@ -92,7 +79,7 @@ install -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/gnome/gnomerc
 # gw these produce rpmlint errors:
 rm -rf %buildroot%_datadir/locale/{be@latin}
 
-%find_lang %{po_package}
+%find_lang %{name}
 
 
 %post
@@ -116,8 +103,7 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-49.lang
-%{_datadir}/xsessions/*
+%files -f %{name}.lang
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
 %{_bindir}/startgnome
@@ -141,12 +127,9 @@ fi
 %{_userunitdir}/gnome-session-restart-dbus.service
 %{_userunitdir}/gnome-session-shutdown.target
 %{_userunitdir}/gnome-session-signal-init.service
-%{_userunitdir}/gnome-session-wayland.target
-%{_userunitdir}/gnome-session-wayland@.target
 %{_userunitdir}/gnome-session-x11-services.target
-%{_userunitdir}/gnome-session-x11.target
-%{_userunitdir}/gnome-session-x11@.target
 %{_userunitdir}/gnome-session.target
 %{_userunitdir}/gnome-session@.target
 %{_userunitdir}/gnome-session-x11-services-ready.target
 %{_userunitdir}/gnome-session@gnome.target.d/gnome.session.conf
+%{_userunitdir}/gnome-session-services.target
