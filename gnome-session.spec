@@ -79,7 +79,7 @@ install -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/gnome/gnomerc
 # gw these produce rpmlint errors:
 rm -rf %buildroot%_datadir/locale/{be@latin}
 
-%find_lang %{po_package}
+%find_lang %{name}
 
 
 %post
@@ -103,7 +103,7 @@ fi
 %{_mandir}/*/%{name}.*
 %{_datadir}/%{name}
 
-%files -f %{name}-50.lang
+%files -f %{name}.lang
 %{_datadir}/xsessions/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/%{name}-inhibit
